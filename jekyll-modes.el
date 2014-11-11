@@ -1,3 +1,44 @@
+;;; jekyll-modes.el --- Major modes (markdown and HTML) for authoring Jekyll content  -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2014  Fredrik Appelberg
+
+;; Author: Fredrik Appelberg <fredrik@milgrim.local>
+;; Keywords: docs
+;; URL: https://github.com/fred-o/jekyll-modes
+;; Version: 0.0.1
+;; Package-Requires: ((polymode "0.2"))
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; This package provides major modes for authoring Jekyll Markdown and
+;; HTML documents, with syntax support for YAML front matter, Liquid
+;; tags and embedded code snippets.
+;;
+;; As this package depends on polymode, Emacs 24 is required.
+;;
+;; The package includes two modes, `jekyll-markdown-mode` and
+;; `jekyll-html-mode`, which can be enabled as normal by adding the
+;; following to you init file:
+;;
+;;     (add-to-list 'auto-mode-alist '("\\.md$" . jekyll-markdown-mode))
+;;     (add-to-list 'auto-mode-alist '("\\.html" . jekyll-html-mode))
+;;
+ 
+;;; Code:
+
 (require 'polymode)
 (require 'poly-markdown)
 (require 'liquid-tags-mode)
@@ -70,3 +111,4 @@
 (define-polymode jekyll-html-mode jekyll/html)
 
 (provide 'jekyll-modes)
+;;; jekyll-modes.el ends here
