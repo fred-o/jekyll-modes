@@ -1,3 +1,4 @@
+(require 'polymode)
 (require 'poly-markdown)
 (require 'liquid-tags-mode)
 
@@ -28,27 +29,25 @@
   :group 'innermodes
   :type 'object)
 
-;; (defcustom jekyll/pygments
-;;   (pm-hbtchunkmode-auto "markdown"
-;;                         :head-reg "{%\s*highlight\s*\\(.*\\)\s%}"
-;;                         :tail-reg "{%\s*endhighlight\s*%}"
-;;                         :head-mode 'liquid-tags-mode
-;;                         :tail-mode 'liquid-tags-mode
-;;                         :retriever-regexp "{%\s*highlight\s*\\(.*\\)\s%}"
-;;                         :font-lock-narrow t)
-;;   "Pygments chunk"
-;;   :group 'innermodes
-;;   :type 'object)
+(defcustom jekyll/pygments
+  (pm-hbtchunkmode-auto "pygments"
+                        :head-reg "{%\s*highlight\s*\\(.*\\)\s%}"
+                        :tail-reg "{%\s*endhighlight\s*%}"
+                        :head-mode 'liquid-tags-mode
+                        :tail-mode 'liquid-tags-mode
+                        :retriever-regexp "{%\s*highlight\s*\\(.*\\)\s%}"
+                        :font-lock-narrow t)
+  "Pygments chunk"
+  :group 'innermodes
+  :type 'object)
 
 (defcustom jekyll/markdown 
-  (pm-polymode-multi "markdown"
-                     :hostmode 'pm-host/markdown
-                     :innermodes '(jekyll/yaml-frontmatter
-                                   pm-inner/markdown
-                                   ;; jekyll/pygments
-                                   jekyll/liquid-expression
-                                   jekyll/liquid-tag
-                                   ))
+  (pm-polymode-multi-auto "markdown"
+                          :hostmode 'pm-host/markdown
+                          :auto-innermode 'jekyll/pygments
+                          :innermodes '(jekyll/yaml-frontmatter
+                                        jekyll/liquid-expression
+                                        jekyll/liquid-tag))
   "Markdown with YAML frontmatter and Liquid tags support."
   :group 'polymodes
   :type 'object)
@@ -57,7 +56,8 @@
   (pm-polymode-multi "html"
                      :hostmode 'pm-host/html
                      :innermodes '(jekyll/yaml-frontmatter
-                                   jekyll/liquid-tag jekyll/liquid-expression))
+                                   jekyll/liquid-expression
+                                   jekyll/liquid-tag))
 
   "HTML with YAML frontmatter and Liquid tags support."
   :group 'polymodes
