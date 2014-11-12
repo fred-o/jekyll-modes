@@ -41,7 +41,19 @@
 
 (require 'polymode)
 (require 'poly-markdown)
-(require 'liquid-tags-mode)
+
+;; A very rudimentary mode for Liquid tags
+
+(defconst liquid-tags-font-lock-keywords
+  `((,(regexp-opt '("if" "elsif" "else" "case" "when" "unless" "for" "in") 'words) . font-lock-keyword-face))
+  "Highlighting Liquid tags")
+
+;;;###autoload
+(define-derived-mode liquid-tags-mode fundamental-mode "Liquid"
+  "Major mode for Liquid Tags"
+  (set (make-local-variable 'font-lock-defaults) '(liquid-tags-font-lock-keywords nil t)))
+
+;; Jekyll modes
 
 (defcustom jekyll/yaml-frontmatter
   (pm-hbtchunkmode "yaml"
