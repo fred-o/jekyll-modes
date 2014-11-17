@@ -1,4 +1,4 @@
-;;; jekyll-modes.el --- Major modes (markdown and HTML) for authoring Jekyll content  -*- lexical-binding: t; -*-
+;;; jekyll-modes.el --- Major modes (markdown and HTML) for authoring Jekyll content
 
 ;; Copyright (C) 2014  Fredrik Appelberg
 
